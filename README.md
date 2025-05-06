@@ -1,5 +1,11 @@
 # Invoice generator
 
+## setup
+```node
+nvm use v22.15.0
+```
+
+## run
 Run me with:
 
 ```npm
@@ -10,11 +16,11 @@ npx vite
 npm run dev
 ```
 
-Default port is http://localhost:5174/
+Default port is http://localhost:5173/
 
-## dev notes:
+## scaffolding
 
-* project was scaffolded with vite:
+Project was scaffolded with vite:
 ```npm
 npm create vite@latest invoice-generator -- --template react-ts
 cd invoice-generator
