@@ -7,11 +7,13 @@ function Home() {
       <>
         <Nav />
         <main>
-          <div className="w-full p-2 lg:w-5xl lg:p-4 m-auto bg-teal-100">
-            <h1>My app</h1>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 pb-16 text-center lg:pt-22">
+            <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">invoicing made simple</h1>
+          </div>
+          <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32 bg-teal-300">
             <p>Paragraph 1</p>
             <p>Paragraph 2</p>
-          </div>
+          </section>
         </main>
         <Footer />
       </>
