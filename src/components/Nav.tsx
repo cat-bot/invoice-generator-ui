@@ -4,12 +4,12 @@ function Nav() {
 
   return (
     <>
-      <header className="py-6">
+      <header className="py-3 md:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="relative z-50 flex justify-between">
             <div className="flex items-center md:gap-x-12">
               <a
-                className="font-mono text-2xl px-4 py-3 rounded-full text-teal-400 hover:text-white hover:bg-teal-400 duration-150"
+                className="font-mono text-2xl px-3 md:px-4 py-3 rounded-full text-teal-400 hover:text-white hover:bg-teal-400 duration-150"
                 aria-label="Invoicy | Home"
                 title="Invoicy | Home"
                 href="#"

@@ -7,7 +7,7 @@ export default function Login() {
     <>
       <Nav />
       <main>
-        <div className="flex h-80 flex-col items-center justify-center gap-6 bg-background px-6 py-10">
+        <div className="flex flex-col items-center justify-center gap-6 bg-background px-6 py-6 pb-10 md:pb-16">
           <div className="w-full max-w-sm">
             <LoginForm />
           </div>
