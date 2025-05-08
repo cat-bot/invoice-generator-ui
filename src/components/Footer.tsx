@@ -1,5 +1,3 @@
-import './Footer.css'
-
 function Footer() {
     return (
       <footer className="pt-4 md:pt-8">
