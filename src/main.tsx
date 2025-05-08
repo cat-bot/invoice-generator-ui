@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 
 import {
   createBrowserRouter,
-  RouterProvider,
+  RouterProvider
 } from "react-router";
 
 // main CSS
@@ -14,12 +14,15 @@ import Home from './pages/Home.tsx'
 import Signin from './pages/Signin.tsx'
 import Register from './pages/Register.tsx'
 import MainLayout from './layouts/MainLayout.tsx';
+import MyShittyError from './components/Error.tsx';
+
 
 // create a browser router
 const router = createBrowserRouter([
   {
     // all routes inherit the main layout
     Component: MainLayout,
+    errorElement: <MyShittyError />,
     children: [
 
       // default route @ '/'
