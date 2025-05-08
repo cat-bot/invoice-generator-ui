@@ -1,6 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from "react-router";
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router";
 
 // main CSS
 import './index.css'
@@ -11,16 +15,31 @@ import Signin from './pages/Signin.tsx'
 import Register from './pages/Register.tsx'
 import MainLayout from './layouts/MainLayout.tsx';
 
+// create a browser router
+const router = createBrowserRouter([
+  {
+    // all routes inherit the main layout
+    Component: MainLayout,
+    children: [
+
+      // default route @ '/'
+      { index: true, Component: Home },
+
+      // nested routes @ '/auth'
+      { 
+        path: "auth", 
+        children: [
+          { path: "signin", Component: Signin },
+          { path: "register", Component: Register }
+        ]
+      }
+    ]
+  }
+]);
+
+// render the app
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+     <RouterProvider router={router} />
   </StrictMode>,
 )
