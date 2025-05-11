@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 export default function MyShittyError() {
     return (
-        <>
+         <div className="font-inter antialiased">
             <Nav />
             <main>
                 <section>
@@ -22,7 +22,7 @@ export default function MyShittyError() {
                 </section>
             </main>
             <Footer />
-        </>
+        </div>
     );
 }
   

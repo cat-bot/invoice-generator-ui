@@ -21,14 +21,14 @@ function Nav() {
              
             </div>
             <div className="flex items-center gap-x-5 md:gap-x-8">
-              <div className="hidden md:block">
+              <div className="hidden sm:block">
                 <Link
                   className="inline-block rounded-full px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                   to="/auth/signin">
                   Sign in
                 </Link>
               </div>
-              <div className="-mr-1 md:hidden">
+              <div className="-mr-1 sm:hidden">
                 <div data-headlessui-state="">
                   <button
                     className="relative z-10 flex h-8 w-8 items-center justify-center focus:not-data-focus:outline-hidden"

@@ -21,12 +21,13 @@ import MyShittyError from './components/Error.tsx';
 const router = createBrowserRouter([
   {
     // all routes inherit the main layout
+    path: "/",
     Component: MainLayout,
     errorElement: <MyShittyError />,
     children: [
 
       // default route @ '/'
-      { index: true, Component: Home },
+      { index: true, Component: Home},
 
       // nested routes @ '/auth'
       { 
