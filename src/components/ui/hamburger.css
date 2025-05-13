@@ -1,0 +1,87 @@
+.hamburger-menu, .hamburger-sidebar {
+    /* common vars */
+    --bar-width: 27px;
+    --bar-height: 5px;
+    --hamburger-gap: 6px;
+    --foreground-color: var(--color-teal-400);
+    --background-color: white;
+    --animation-function: 250ms ease-in-out;
+    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+    --x-width: calc(var(--hamburger-height) * 1.41421);
+    --hamburger-top-offset: calc(var(--spacing) * -3);
+    --hamburger-right-offset: calc(var(--spacing) * -4);
+}
+
+.hamburger-menu {
+    /* styles */
+    position: relative;
+    width: max-content;
+    max-width: var(--hamburger-height);
+    z-index: 2;
+    cursor:pointer;
+}
+
+.hamburger-menu:has(input:checked) {
+  --foreground-color: white;
+  --background-color: var(--color-teal-400);
+}
+
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background: var(--foreground-color);
+    border-radius: 9999px;
+    transform-origin: left center;
+    transition: opacity var(--animation-function), 
+        width var(--animation-function), 
+        translate var(--animation-function), 
+        rotate var(--animation-function),
+        background-color var(--animation-function);
+}
+
+.hamburger-menu input {
+    appearance:none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+}
+
+.hamburger-menu:has(input:checked)::before {
+    rotate:45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+}
+
+.hamburger-menu:has(input:checked)::after {
+    rotate:-45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
+}
+
+.hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+}
+
+.hamburger-sidebar {
+    transition: translate var(--animation-timing);
+    translate: 100%;
+    position: absolute;
+    top: var(--hamburger-top-offset);
+    right: var(--hamburger-right-offset);
+    background: var(--foreground-color);
+    color: var(--background-color);
+    padding: 0.5rem 1rem;
+    padding-top: calc(var(--hamburger-height) + calc(var(--spacing) * 8) + 1rem);
+    max-width: 90vw;
+    min-width: 50vw;
+    min-height: 100vh;
+}
+
+.hamburger-menu:has(input:checked) + .hamburger-sidebar {
+  translate: 0;
+}

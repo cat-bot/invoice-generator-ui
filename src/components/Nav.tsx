@@ -1,13 +1,14 @@
 import { Link } from "react-router";
-import { useState } from "react";
+// import { useState } from "react";
 import Hamburger from "@/components/ui/hamburger";
 
 function Nav() {
 
-  const [isHamburgerOpen, setHamburgerOpen] = useState(false);
+  // const [isHamburgerOpen, setHamburgerOpen] = useState(false);
 
   const navLinks = [
     { name: "Sign in", href: "/auth/signin" },
+    { name: "Register", href: "/auth/register" }
   ];
 
   return (
@@ -40,8 +41,8 @@ function Nav() {
                   </Link>
                 ))}
               </div>
-              <div className="-mr-1 sm:hidden">
-                <Hamburger toggled={isHamburgerOpen} toggle={setHamburgerOpen} />
+              <div className="sm:hidden mr-2">
+                <Hamburger sidebarLinks={navLinks} />
               </div>
             </div>
           </nav>
