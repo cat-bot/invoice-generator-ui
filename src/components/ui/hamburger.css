@@ -76,7 +76,7 @@
     background: var(--foreground-color);
     color: var(--background-color);
     padding: 0.5rem 1rem;
-    padding-top: calc(var(--hamburger-height) + calc(var(--spacing) * 8) + 1rem);
+    padding-top: calc(var(--hamburger-height) + calc(var(--spacing) * 8) + 2rem);
     max-width: 90vw;
     min-width: 50vw;
     min-height: 100vh;
