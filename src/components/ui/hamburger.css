@@ -75,11 +75,16 @@
     right: var(--hamburger-right-offset);
     background: var(--foreground-color);
     color: var(--background-color);
-    padding: 0.5rem 1rem;
+    padding: 1rem 0rem;
     padding-top: calc(var(--hamburger-height) + calc(var(--spacing) * 8) + 2rem);
     max-width: 90vw;
     min-width: 50vw;
     min-height: 100vh;
+}
+
+.hamburger-sidebar a[aria-current] {
+    background: var(--color-teal-500);
+    border-right: 5px solid var(--color-teal-700);
 }
 
 .hamburger-menu:has(input:checked) + .hamburger-sidebar {

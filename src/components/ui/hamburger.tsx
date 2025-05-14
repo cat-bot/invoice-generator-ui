@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 import { useState } from 'react';
 import './hamburger.css';
 
@@ -17,15 +17,16 @@ function Hamburger({ sidebarLinks }: { sidebarLinks: { name: string; href: strin
             
         </label>
         <aside className="hamburger-sidebar">
-            <nav className="flex flex-col gap-2 text-right text-bold">
+            <nav className="flex flex-col text-right text-bold">
                 { sidebarLinks.map((link) => (
-                  <Link
+                  <NavLink
                     key={link.name}
                     to={link.href}
                     onClick={handleNavClick}
+                    className="py-2 px-4"
                   >
                     {link.name}
-                  </Link>
+                  </NavLink>
                 ))}
             </nav>
         </aside>
