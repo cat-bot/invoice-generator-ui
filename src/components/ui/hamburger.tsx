@@ -16,7 +16,7 @@ function Hamburger({ sidebarLinks }: { sidebarLinks: { name: string; href: strin
             <input type="checkbox" checked={isChecked} onChange={handleNavClick}/>
             
         </label>
-        <aside className="hamburger-sidebar">
+        <aside className="hamburger-sidebar opacity-95 rounded-l-lg">
             <nav className="flex flex-col text-right text-bold">
                 { sidebarLinks.map((link) => (
                   <NavLink

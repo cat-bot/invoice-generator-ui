@@ -1,8 +1,8 @@
 .hamburger-menu, .hamburger-sidebar {
     /* common vars */
     --bar-width: 27px;
-    --bar-height: 5px;
-    --hamburger-gap: 6px;
+    --bar-height: 4px;
+    --hamburger-gap: 5px;
     --foreground-color: var(--color-teal-400);
     --background-color: white;
     --animation-function: 250ms ease-in-out;
@@ -76,9 +76,9 @@
     background: var(--foreground-color);
     color: var(--background-color);
     padding: 1rem 0rem;
-    padding-top: calc(var(--hamburger-height) + calc(var(--spacing) * 8) + 2rem);
+    padding-top: calc(var(--hamburger-height) + calc(var(--spacing) * 8) + 1.6rem);
     max-width: 90vw;
-    min-width: 50vw;
+    min-width: 300px;
     min-height: 100vh;
 }
 

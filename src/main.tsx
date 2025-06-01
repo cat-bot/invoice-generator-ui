@@ -12,10 +12,21 @@ import './index.css'
 // page components for routing
 import Home from './pages/Home.tsx'
 import Signin from './pages/Signin.tsx'
-import Register from './pages/Register.tsx'
+import Signout from './pages/Signout.tsx'
 import MainLayout from './layouts/MainLayout.tsx';
-import MyShittyError from './components/Error.tsx';
+import ErrorComponent from './components/Error.tsx';
 
+// MSAL imports
+import {
+    PublicClientApplication,
+    EventType,
+    EventMessage,
+    AuthenticationResult,
+} from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
+import { msalConfig } from "./authConfig";
+
+const msalInstance = new PublicClientApplication(msalConfig);
 
 // create a browser router
 const router = createBrowserRouter([
@@ -23,7 +34,7 @@ const router = createBrowserRouter([
     // all routes inherit the main layout
     path: "/",
     Component: MainLayout,
-    errorElement: <MyShittyError />,
+    errorElement: <ErrorComponent />,
     children: [
 
       // default route @ '/'
@@ -34,16 +45,36 @@ const router = createBrowserRouter([
         path: "auth", 
         children: [
           { path: "signin", Component: Signin },
-          { path: "register", Component: Register }
+          { path: "signout", Component: Signout }
         ]
       }
     ]
   }
 ]);
 
-// render the app
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-     <RouterProvider router={router} />
-  </StrictMode>,
-)
+msalInstance.initialize().then(() => {
+  // Account selection logic is app dependent. Adjust as needed for different use cases.
+  const accounts = msalInstance.getAllAccounts();
+  if (accounts.length > 0) {
+      msalInstance.setActiveAccount(accounts[0]);
+  }
+
+  msalInstance.addEventCallback((event: EventMessage) => {
+      if (event.eventType === EventType.LOGIN_SUCCESS && event.payload) {
+          const payload = event.payload as AuthenticationResult;
+          const account = payload.account;
+          msalInstance.setActiveAccount(account);
+      }
+  });
+
+  // render the app
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <MsalProvider instance={msalInstance}>
+        <RouterProvider router={router} />
+      </MsalProvider>
+    </StrictMode>,
+  )
+
+});
+
