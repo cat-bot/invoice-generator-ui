@@ -3,40 +3,102 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, use
 import Hamburger from "@/components/ui/hamburger";
 import Avatar from "./ui/avatar";
 import DefaultAvatar from "./ui/defaultavatar";
+import { useEffect, useState } from "react";
+import { InteractionStatus } from "@azure/msal-browser";
 
 const Nav = () => {
 
   const isAuthenticated = useIsAuthenticated();
-  const { instance } = useMsal();
+  const { instance, inProgress, accounts } = useMsal();
+  const activeAccount = instance.getActiveAccount();
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   const navLinks = isAuthenticated ? 
   [ 
+    { name: "Dashboard", href: "/dashboard" },
     { name: "Sign out", href: "/auth/signout" } 
   ] :
   [ 
     { name: "Sign in", href: "/auth/signin" } 
   ];
 
-  const activeAccount = instance.getActiveAccount();
+  useEffect(() => {
+    if (!avatarUrl && inProgress === InteractionStatus.None) {
+
+      const accessTokenRequest = {
+        scopes: ["user.read"],
+        account: accounts[0],
+      };
+
+      instance
+        .acquireTokenSilent(accessTokenRequest)
+        .then((accessTokenResponse) => {
+
+          let accessToken = accessTokenResponse.accessToken;
+
+          // Call your API with token
+          var headers = new Headers();
+          var bearer = "Bearer " + accessToken;
+          headers.append("Authorization", bearer);
+          var options = {
+                method: "GET",
+                headers: headers
+          };
+
+          var graphEndpoint = "https://graph.microsoft.com/v1.0/me/photo/$value" ;
+
+          return fetch(graphEndpoint, options);
+        })
+        .then((response) => {
+          if (!response.ok) {
+           throw new Error('Network response was not ok');
+          }        
+          return response.blob();
+        })
+        .then((blob) => {
+          const imageUrl = URL.createObjectURL(blob);
+          setAvatarUrl(imageUrl);
+        })
+        .catch((error) => {
+          // if (error instanceof InteractionRequiredAuthError) {
+          //   instance
+          //     .acquireTokenPopup(accessTokenRequest)
+          //     .then(function (accessTokenResponse) {
+          //       // Acquire token interactive success
+          //       let accessToken = accessTokenResponse.accessToken;
+          //       // Call your API with token
+          //       callApi(accessToken).then((response) => {
+          //         setApiData(response);
+          //       });
+          //     })
+          //     .catch(function (error) {
+          //       // Acquire token interactive failure
+          //       console.log(error);
+          //     });
+          // }
+          console.log(error);
+        });
+    }
+  }, [instance, accounts, inProgress, avatarUrl]);
 
   return (
     <>   
       <header className="py-3 md:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="relative z-50 flex justify-between">
-            <div className="flex items-center md:gap-x-4">
-              <Link to="/" className="font-mono text-2xl px-4 py-3 rounded-full text-teal-400 hover:text-white hover:bg-teal-400 duration-150">_$_</Link>
-              <Link to="/" className="font-mono text-xl md:text-2xl px-2 py-3 overflow-hidden">invoicy</Link>
-              <div className="hidden md:flex md:gap-x-6">
-                {/* <a
-                  className="inline-block rounded-full px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
-                  href="#features">
-                  Features
-                </a> */}
-              </div>
+            <div className="flex items-baseline md:gap-x-4">
+              <Link to="/" className="font-mono p-3 text-2xl text-teal-400 hover:text-teal-500 duration-150">
+                <span className="hidden md:inline">_invoicy_</span>
+                <span className="inline md:hidden">_$_</span>
+              </Link>
+              <a
+                className="hidden md:inline rounded-full px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                href="#features">
+                Features
+              </a>
             </div>
             <div className="flex items-center gap-x-4 md:gap-x-6">
-              <div className="invisible sm:visible">
+              <div className="hidden sm:block">
                 { navLinks.map((link) => (
                   <a
                     key={link.name}
@@ -49,7 +111,7 @@ const Nav = () => {
               </div>
               <div>
                 <AuthenticatedTemplate>
-                  <Avatar src={ activeAccount?.username ?? "" } alt= { "what what" } />
+                  <Avatar src={ avatarUrl } title= { activeAccount?.name  } />
                 </AuthenticatedTemplate>
                 <UnauthenticatedTemplate>
                   <Link to={ "/auth/signin" }>
