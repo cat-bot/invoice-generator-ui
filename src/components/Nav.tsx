@@ -34,18 +34,18 @@ const Nav = () => {
         .acquireTokenSilent(accessTokenRequest)
         .then((accessTokenResponse) => {
 
-          let accessToken = accessTokenResponse.accessToken;
+          const accessToken = accessTokenResponse.accessToken;
 
           // Call your API with token
-          var headers = new Headers();
-          var bearer = "Bearer " + accessToken;
+          const headers = new Headers();
+          const bearer = "Bearer " + accessToken;
           headers.append("Authorization", bearer);
-          var options = {
+          const options = {
                 method: "GET",
                 headers: headers
           };
 
-          var graphEndpoint = "https://graph.microsoft.com/v1.0/me/photo/$value" ;
+          const graphEndpoint = "https://graph.microsoft.com/v1.0/me/photo/$value" ;
 
           return fetch(graphEndpoint, options);
         })
