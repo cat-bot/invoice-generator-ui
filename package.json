@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "builddev": "tsc -b && vite build --mode azuredevelopment && npm run copy-swa",
+    "builddev": "tsc -b && vite build --mode azuredevelopment",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
