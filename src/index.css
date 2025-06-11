@@ -6,6 +6,8 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
+  --text-15-size: 0.938rem;
+
   /* shadcn vars */
   --radius: 0.5rem;
   --background: oklch(1 0 0);
@@ -46,6 +48,9 @@
 
 @theme {
   --font-inter: Inter, sans-serif;
+
+  --text-sm-base: var(--text-15-size);  
+  --text-sm-base--line-height: var(--tw-leading, var(--text-base--line-height));   
 }
 
 @theme inline {

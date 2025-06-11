@@ -23,7 +23,8 @@ const Nav = () => {
   ];
 
   useEffect(() => {
-    if (!avatarUrl && inProgress === InteractionStatus.None) {
+
+    if (isAuthenticated && !avatarUrl && inProgress === InteractionStatus.None) {
 
       const accessTokenRequest = {
         scopes: ["user.read"],
@@ -92,7 +93,7 @@ const Nav = () => {
                 <span className="inline md:hidden">_$_</span>
               </Link>
               <a
-                className="hidden md:inline rounded-full px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                className="hidden md:inline rounded-full px-3 py-2 text-sm-base text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 href="#features">
                 Features
               </a>
@@ -103,7 +104,7 @@ const Nav = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="inline-block rounded-full px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                    className="inline-block rounded-full px-3 py-2 text-sm-base text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                   >
                     {link.name}
                   </a>

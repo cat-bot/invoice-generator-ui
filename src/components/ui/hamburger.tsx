@@ -17,7 +17,7 @@ function Hamburger({ sidebarLinks }: { sidebarLinks: { name: string; href: strin
             
         </label>
         <aside className="hamburger-sidebar opacity-95 rounded-l-lg">
-            <nav className="flex flex-col text-right text-bold">
+            <nav className="flex flex-col text-right text-base text-bold">
                 { sidebarLinks.map((link) => (
                   <NavLink
                     key={link.name}
