@@ -5,12 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "builddev": "tsc -b && vite build --mode azuredevelopment",
+    "build-azure-dev": "tsc -b && vite build --mode azuredevelopment && cp staticwebapps.config.json dist\\staticwebapps.config.json",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "cp-swa": "copy staticwebapps.config.json dist\\staticwebapps.config.json",
-    "cp-swa-linux": "cp staticwebapps.config.json dist\\staticwebapps.config.json"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.12.0",
