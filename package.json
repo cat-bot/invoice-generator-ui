@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "copy-swa": "copy staticwebapps.config.json dist\\staticwebapps.config.json"
+    "cp-swa": "copy staticwebapps.config.json dist\\staticwebapps.config.json",
+    "cp-swa-linux": "cp staticwebapps.config.json dist\\staticwebapps.config.json"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.12.0",
