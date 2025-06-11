@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "builddev": "tsc -b && vite build --mode azuredevelopment",
+    "builddev": "tsc -b && vite build --mode azuredevelopment && npm run copy-swa",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "copy-swa": "copy staticwebapps.config.json dist\\staticwebapps.config.json"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.12.0",

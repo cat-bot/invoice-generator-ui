@@ -80,7 +80,7 @@ const Nav = () => {
           console.log(error);
         });
     }
-  }, [instance, accounts, inProgress, avatarUrl]);
+  }, [instance, accounts, inProgress, avatarUrl, isAuthenticated]);
 
   return (
     <>   
