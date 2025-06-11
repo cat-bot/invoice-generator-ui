@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build-azure-dev": "tsc -b && vite build --mode azuredevelopment && cp staticwebapps.config.json dist\\staticwebapps.config.json",
+    "build-azure-dev": "tsc -b && vite build --mode azuredevelopment && cp staticwebapps.config.json dist/staticwebapps.config.json",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
