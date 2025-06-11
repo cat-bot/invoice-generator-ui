@@ -1,9 +1,5 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html"
-  },
-  "globalHeaders": {
-    "Access-Control-Allow-Origin": "https://icy-field-090cfcd03.6.azurewebsites.net",
-    "Access-Control-Allow-Methods": "POST, GET, OPTIONS"
   }
 }
