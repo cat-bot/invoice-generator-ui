@@ -18,6 +18,24 @@ npm run dev
 
 Default port is http://localhost:5173/
 
+## build
+```
+npm run build
+```
+
+## upgrade
+
+Use [npm-check-updates](https://github.com/raineorshine/npm-check-updates). 
+```npm
+# install
+npm install -g npm-check-updates
+
+# check status
+ncu
+
+# upgrade
+```
+
 ## scaffolding
 
 Project was scaffolded with vite:
