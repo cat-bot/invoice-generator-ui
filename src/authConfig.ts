@@ -12,6 +12,7 @@ export const msalConfig: Configuration = {
 
         // Points to window.location.origin. You must register this URI on Microsoft Entra admin center/App Registration.
         redirectUri: import.meta.env.VITE_AUTH_redirectUri, 
+        navigateToLoginRequestUrl: false,
 
         postLogoutRedirectUri: import.meta.env.VITE_AUTH_postLogoutRedirectUri
     },
