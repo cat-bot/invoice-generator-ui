@@ -92,22 +92,22 @@ const Nav = () => {
                 <span className="hidden md:inline">_invoicy_</span>
                 <span className="inline md:hidden">_$_</span>
               </Link>
-              <a
+              <Link
                 className="hidden md:inline rounded-full px-3 py-2 text-sm-base text-slate-700 hover:bg-slate-100 hover:text-slate-900"
-                href="#features">
+                to="#features">
                 Features
-              </a>
+              </Link>
             </div>
             <div className="flex items-center gap-x-4 md:gap-x-6">
               <div className="hidden sm:block">
                 { navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.name}
-                    href={link.href}
+                    to={link.href}
                     className="inline-block rounded-full px-3 py-2 text-sm-base text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div>

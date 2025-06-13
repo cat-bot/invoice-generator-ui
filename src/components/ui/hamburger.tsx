@@ -14,7 +14,6 @@ function Hamburger({ sidebarLinks }: { sidebarLinks: { name: string; href: strin
     <>
         <label className="hamburger-menu flex flex-col gap-(--hamburger-gap)">
             <input type="checkbox" checked={isChecked} onChange={handleNavClick}/>
-            
         </label>
         <aside className="hamburger-sidebar opacity-95 rounded-l-lg">
             <nav className="flex flex-col text-right text-base text-bold">
